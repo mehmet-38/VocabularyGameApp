@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "571402491707",
+    "firebase_url": "https://wordsgame-9cccf-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "wordsgame-9cccf",
+    "storage_bucket": "wordsgame-9cccf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571402491707:android:aaf28dcaaf9c6ed58b491e",
+        "android_client_info": {
+          "package_name": "com.example.vocabularygame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571402491707-e0073gkfhv944s1gkdqac3fbnmvln1bt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBijH_xFJk1j4R0ajk9ijicGPyfrIo4xKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571402491707-e0073gkfhv944s1gkdqac3fbnmvln1bt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
