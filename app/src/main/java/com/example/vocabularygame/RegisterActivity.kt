@@ -19,32 +19,19 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
 
-    @IgnoreExtraProperties
-    class DocStats( val count:Int? = null)
+
+    private fun counter()
     {
+        var db = DatabaseControl()
 
-    }
-
-
-
-
-    private fun counter(collectionPath:String)
-    {
-        var db = Firebase.firestore
-        /*
-        val value = 0;
-        var items: Array<DocStats> = emptyArray()
-        */
-
-        val docRef = db.collection(collectionPath).document("--stats--")
-        docRef.get()
+        var dr = db.getCounter("users")
+        dr.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
 
+                     val ss = document.toObject<DatabaseControl.DocStats>()
 
-                     val ss = document.toObject<DocStats>()
-
-                    Toast.makeText(this,"count ss.count : ${ss?.count}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"count: ${ss?.count}",Toast.LENGTH_SHORT).show()
                 } else {
                     print( "No such document")
                 }
@@ -57,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.register.setOnClickListener {
@@ -69,13 +56,25 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.deneme.setOnClickListener {
-            var db = Firebase.firestore
-            counter("users")
+
+             counter()
+        //getData("8z5VfENM6Eebob4PBCOxCx1QlQN2")
+
+        }
+    }
+    private fun getData(kullaniciId:String){
+        var db2 = DatabaseControl()
+        var sr = db2.getKullanicilar("users",kullaniciId)
+        sr.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var veri = (document.toObject<DatabaseControl.Kullanici>())
+                Toast.makeText(this," veri ${veri?.name}",Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 
     }
-
     private fun addFireStoreData(auth_uid:String) {
         val email:String =binding.email.text.toString()
         val password:String =binding.registerPassword.text.toString()
