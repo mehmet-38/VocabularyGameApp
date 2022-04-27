@@ -26,20 +26,21 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    class Qst(
-        private val count: Int
-    )
+
 
     private fun counter(collectionPath:String)
     {
         var db = Firebase.firestore
+        /*
         val value = 0;
         var items: Array<DocStats> = emptyArray()
+        */
+
         val docRef = db.collection(collectionPath).document("--stats--")
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    val xx = document.get("count")
+
 
                      val ss = document.toObject<DocStats>()
 
