@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.vocabularygame.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityProfileBinding
@@ -22,8 +23,14 @@ class ProfileActivity : AppCompatActivity() {
           binding.logout.setOnClickListener {
               logOut()
           }
+        binding.kayit.setOnClickListener{
 
+            addScore(FirebaseAuth.getInstance().currentUser!!.uid)
+        }
 
+    }
+
+    private fun addScore(auth_id:String) {
 
     }
 

@@ -9,10 +9,13 @@ import com.google.firebase.firestore.DocumentReference
 
 public class DatabaseControl {
 
+    /*
      @IgnoreExtraProperties
      data class Kullanici(var name: String? = null) {
 
      }
+
+     */
     @IgnoreExtraProperties
     class DocStats( val count:Int? = null)
     {
@@ -24,15 +27,14 @@ public class DatabaseControl {
 
         return docRef
     }
-     fun getKullanicilar(collectin: String, kullaniciId: String,):DocumentReference{
+
+    fun getKullanici(collectin: String, kullaniciId: String):DocumentReference{
 
          var db = Firebase.firestore
          var getKul = db.collection(collectin).document(kullaniciId)
 
         return  getKul
      }
-
-
 
 
 }
