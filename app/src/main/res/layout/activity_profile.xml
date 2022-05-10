@@ -1,61 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bck_grnd"
     tools:context=".ProfileActivity">
 
-  <TextView
-      android:id="@+id/userid"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text=""
-      android:textSize="26sp"
-      app:layout_constraintBottom_toTopOf="@+id/email"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.511" />
-
-  <TextView
-      android:id="@+id/email"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="468dp"
-      android:text=""
-      android:textSize="26sp"
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/ProfileUserInf"
+      android:layout_width="331dp"
+      android:layout_height="136dp"
+      android:layout_marginBottom="39dp"
+      android:background="#4BFFFFFF"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.16000003">
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alper"
+        android:textColor="#504851"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <TextView
+        android:id="@+id/profileScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="35"
+        android:textColor="#9C27B0"
+        android:textSize="48sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileName" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
   <Button
       android:id="@+id/logout"
-      android:layout_width="147dp"
-      android:layout_height="70dp"
-      android:layout_marginTop="128dp"
-      android:backgroundTint="#0ED6b9"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:backgroundTint="#37FFFFFF"
+      android:fontFamily="sans-serif-black"
       android:text="Log Out"
-      android:textSize="23sp"
+
+      android:textColor="#9C27B0"
+      android:textSize="24sp"
       android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/email"
-
-      />
+      app:layout_constraintTop_toBottomOf="@+id/oynaButton" />
 
   <Button
-      android:id="@+id/kayit"
+      android:id="@+id/oynaButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Button"
-      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_marginTop="44dp"
+      android:backgroundTint="#2FFFFFFF"
+      android:onClick="OynaClick"
+      android:text="Play"
+      android:textColor="#FF5722"
+      android:textSize="48sp"
+      android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.498"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/logout"
-      app:layout_constraintVertical_bias="0.372" />
+      app:layout_constraintTop_toBottomOf="@+id/ProfileUserInf" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

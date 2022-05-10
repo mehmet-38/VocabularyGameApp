@@ -83,10 +83,8 @@ class UsersControl (var context: AppCompatActivity) {
                         Toast.makeText(context,"You are registered successfully",Toast.LENGTH_SHORT).show()
                         addFireStoreData(firebaseUser.uid, newUser)
 
-                        val intent = Intent(context,ProfileActivity::class.java)
+                        val intent = Intent(context,MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        intent.putExtra("user_id",firebaseUser.uid)
-                        intent.putExtra("email_id",newUser.email)
                         addFireStoreData(firebaseUser.uid,newUser)
                         context.startActivity(intent)
                         context.finish()
@@ -124,5 +122,7 @@ class UsersControl (var context: AppCompatActivity) {
     }
 
 //-------------------------------------------------------------------------------------
+
+
 
 }

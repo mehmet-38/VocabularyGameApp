@@ -23,47 +23,8 @@ import org.json.JSONTokener
 class RegisterActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityRegisterBinding
 
-    private lateinit var firebaseAuth: FirebaseAuth
-
-
-    fun deneme()
-    {
-        val usersControl = UsersControl(this)
-        usersControl.getLiveUserObserver().observe(this, Observer { users->
-            if (users!=null){
-                Toast.makeText(this,"users verileri cekildi. Boyut: ${users.count()}",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(this,"Error in getting list",Toast.LENGTH_SHORT).show()
-            }
-
-        })
-        usersControl.makeFireStoreCall()
-    }
     //
 
-
-    private fun counter()
-    {
-        var db = DatabaseControl()
-
-        var dr = db.getCounter("users")
-        dr.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-
-                     val ss = document.toObject<DatabaseControl.DocStats>()
-
-                    Toast.makeText(this,"count: ${ss?.count}",Toast.LENGTH_SHORT).show()
-                } else {
-                    print( "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                print( "get failed with " + exception)
-            }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,16 +32,9 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.register.setOnClickListener {
-            //validateData()
             callRegister()
         }
-        binding.backButton.setOnClickListener {
-            onBackPressed()
-        }
 
-        binding.deneme.setOnClickListener {
-            deneme()
-        }
     }
 
     fun callRegister()
@@ -99,17 +53,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun getData(kullaniciId:String){
-        var db2 = DatabaseControl()
-        var sr = db2.getKullanici("users",kullaniciId)
-        sr.get().addOnSuccessListener { document ->
-            if (document != null) {
-                var veri = (document.toObject<User>())
-            }
 
-        }
-
-    }
 
 
 

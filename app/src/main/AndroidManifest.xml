@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vocabularygame" >
+    package="com.example.vocabularygame">
 
     <application
         android:allowBackup="true"
@@ -8,16 +8,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LoginProject" >
+        android:theme="@style/Theme.LoginProject">
         <activity
-            android:name="com.example.vocabularygame.ProfileActivity"
+            android:name=".ToplistActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.vocabularygame.RegisterActivity"
+            android:name=".GameActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.vocabularygame.MainActivity"
-            android:exported="true" >
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
