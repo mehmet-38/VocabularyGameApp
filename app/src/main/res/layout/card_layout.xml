@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="#4FFFFFFF"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
+    app:contentPadding="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A6FFFFFF"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/item_toplistScore"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:fontFamily="sans-serif-black"
+            android:textAlignment="viewEnd"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="180" />
+
+        <TextView
+            android:id="@+id/item_toplistName"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/item_toplistPosition"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nevra" />
+
+        <TextView
+            android:id="@+id/item_toplistPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:fontFamily="sans-serif-black"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
