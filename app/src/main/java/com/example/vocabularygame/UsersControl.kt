@@ -2,12 +2,15 @@ package com.example.vocabularygame
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -21,12 +24,12 @@ class UsersControl (var context: AppCompatActivity) {
 
 
 
-    lateinit var liveUserList: MutableLiveData<List<User>>
+    lateinit var liveUserList: MutableLiveData<List<UserItem>>
     init{
         liveUserList= MutableLiveData()
     }
 
-    public fun getLiveUserObserver(): MutableLiveData<List<User>> {
+    public fun getLiveUserObserver(): MutableLiveData<List<UserItem>> {
         return liveUserList
     }
 
@@ -37,11 +40,21 @@ class UsersControl (var context: AppCompatActivity) {
         db.collection("users")
             .get()
             .addOnSuccessListener { result ->
-                var userList = ArrayList<User>()
+
+                var userItemList = ArrayList<UserItem>()
+
                 for (document in result) {
-                    userList.add(gson.fromJson(document.data.toString(),User::class.java))
+
+                    if(document == result.elementAt(0))
+                        continue
+
+                    var user =gson.fromJson(document.data.toString(),User::class.java)
+                    var userItem = UserItem(document.id, user)
+
+                    userItemList.add(userItem)
                 }
-                liveUserList.postValue(userList)
+
+                liveUserList.postValue(userItemList)
 
             }
             .addOnFailureListener {
@@ -49,14 +62,57 @@ class UsersControl (var context: AppCompatActivity) {
             }
     }
 
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------
+
+    lateinit var liveScoresList: MutableLiveData<List<ScoreItem>>
+    init{
+        liveScoresList= MutableLiveData()
+    }
+
+    public fun getLiveScoresObserver(): MutableLiveData<List<ScoreItem>> {
+        return liveScoresList
+    }
+
+    // FireStore scores collectionundaki verileri liveScoresList'e post eder.
+    public fun makeFireStoreScoresCall() {
+        val gson = Gson()
+        val db = Firebase.firestore
+        db.collection("scores")
+            .get()
+            .addOnSuccessListener {
+                var scoreList = ArrayList<ScoreItem>()
+
+                for (document in it)
+                {
+                    val scoreItem = ScoreItem(document.id, document.toObject<Score>())
+                    scoreList.add(scoreItem)
+
+                }
+
+                scoreList.remove(scoreList.first())
+                liveScoresList.postValue(scoreList)
+            }
+            .addOnFailureListener {
+                liveScoresList.postValue(null)
+            }
+    }
+
+
+
 //------------------------------------------------------------------------------------
     public fun addUser(newUser:User){
-        getLiveUserObserver().observe(context, Observer { users->
-            if (users!=null){
+        getLiveUserObserver().observe(context, Observer { userItems->
+            if (userItems!=null){
 
                 var validPhone:Boolean = true
-                for (user in users){
-                    if(user.telNo == newUser.telNo)
+                for (userItem in userItems){
+                    if(userItem.user!!.telNo == newUser.telNo)
                         validPhone = false
                 }
 
@@ -70,6 +126,56 @@ class UsersControl (var context: AppCompatActivity) {
 
         })
         makeFireStoreCall()
+    }
+
+    public fun setViewMatchesUsers( recyclerView: RecyclerView, userContacts: List<ContactDTO>)
+    {
+        val toplistFriends: MutableList<ScoreItem> = ArrayList()
+
+        getLiveUserObserver().observe(context, Observer { userItems->
+            if (userItems!=null ){
+
+
+                for (userItem in userItems){
+                    var i = 0
+                    for(uc in userContacts)
+                    {
+                        val ucNum = userContacts[i++].number
+                            .replace("-", "")
+                            .replace("(","")
+                            .replace(")","")
+                            .replace("+90","0")
+                            .replace(" ", "")
+
+                        if(userItem.user!!.telNo == ucNum)
+                        {
+                            getLiveScoresObserver().observe(context, Observer { scoresItems->
+                                for(scoreItem in scoresItems)
+                                {
+                                   if(scoreItem.id == userItem.id)
+                                   {
+                                       toplistFriends.add(scoreItem)
+                                       break
+                                   }
+
+                                }
+                            })
+                            break
+                        }
+                    }
+                }
+
+                recyclerView.adapter =  RecyclerAdapter( toplistFriends )
+
+            }
+            else{
+                Toast.makeText(context,"Error in getting user list",Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        makeFireStoreScoresCall()
+        makeFireStoreCall()
+
     }
 
     private fun addAuth(newUser:User) {

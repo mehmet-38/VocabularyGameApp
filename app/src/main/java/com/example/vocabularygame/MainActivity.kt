@@ -13,6 +13,13 @@ import com.google.firebase.firestore.ktx.toObject
 
 
 class MainActivity : AppCompatActivity() {
+
+
+
+
+
+
+
     private lateinit var binding:ActivityMainBinding
 
     val PREFS_FILENAME = "com.example.vocabularygame"
@@ -41,10 +48,12 @@ class MainActivity : AppCompatActivity() {
         //Dosyadan okurken ilk parametre anahtar değer ikincisi ise okuma
         // işlemi başarısız olursa yada dosyada böyle bir değer yoksa
         // atanacak DEFAULT değerdir.
-        Toast.makeText(this,
-            "Name : ${prefences.getString(KEY_MAIL,"")}\n" +
-                    "Age : ${prefences.getString(KEY_PWD,"")}\n"
-            ,Toast.LENGTH_SHORT ).show()
+        //Toast.makeText(this,
+        //    "Name : ${prefences.getString(KEY_MAIL,"")}\n" +
+        //            "Age : ${prefences.getString(KEY_PWD,"")}\n"
+        //    ,Toast.LENGTH_SHORT ).show()
+
+
 
 
     }

@@ -55,6 +55,7 @@ class ScoresControl (var context: AppCompatActivity){
                 liveScoresList.postValue(null)
             }
     }
+
     public fun addScore(newScoreItem: ScoreItem){
         var db = Firebase.firestore
         db.collection("scores").document(newScoreItem.id).set(newScoreItem.score)
@@ -86,7 +87,6 @@ class ScoresControl (var context: AppCompatActivity){
             }
 
         })
-
         makeFireStoreCall()
     }
 

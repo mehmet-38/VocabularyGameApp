@@ -4,18 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.example.vocabularygame.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -80,6 +74,13 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+    }
+
+    public final fun ScoreClick(view: View)
+    {
+
+        var intent = Intent(this, ToplistActivity::class.java)
+        startActivity(intent)
     }
 
 }
